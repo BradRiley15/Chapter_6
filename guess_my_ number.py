@@ -11,11 +11,22 @@ print("\tWelcome to 'Guess My Number'!")
 print("\nI'm thinking of a number between 1 and 100.")
 print("Try to guess it in as few attempts as possible.\n")
 
+
 # set the initial values
 the_number = random.randint(1, 100)
-guess = int(input("Take a guess: "))
+question = 'Take a guess: '
 tries = 1
+low = 1
+high = 101
 
+
+def ask_number(question, low, high, step = 1):
+    guess = None
+    while guess not in range(low, high):
+        guess = int(input(question))
+    return guess
+
+guess = ask_number(question, low, high, step = 1)
 # guessing loop
 while guess != the_number:
     if guess > the_number:
@@ -23,7 +34,7 @@ while guess != the_number:
     else:
         print("Higher...")
             
-    guess = int(input("Take a guess: "))
+    guess = ask_number(question, low, high, step = 1)
     tries += 1
 
 print("You guessed it!  The number was", the_number)
